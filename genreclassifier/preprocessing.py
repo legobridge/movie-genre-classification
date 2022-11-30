@@ -58,13 +58,13 @@ def preprocess_dataset(dataset: pd.DataFrame, processed_data_filename):
 
     # Save fewer label versions
     top_genres = dataset.genre.value_counts().index
-    num_classes = [3, 4, 5, 6, 7]
+    num_classes = [5, 7, 9, 11]
     for n in num_classes:
         genres = top_genres[:n].to_list()
         new_data = dataset[dataset['genre'].isin(genres)]
         fewer_labels_data_filename = '{}_genres_{}'.format(n, processed_data_filename)
         fewer_labels_data_filepath = os.path.join(PROCESSED_DATA_FILEDIR, 'fewer_labels', fewer_labels_data_filename)
-        new_data.to_csv(fewer_labels_data_filepath, index=False)
+        new_data.to_csv(fewer_labels_data_filepath)
 
 
 if __name__ == '__main__':
