@@ -136,3 +136,5 @@ dmypy.json
 
 # our ignores
 /models/lid.176.bin
+RandomOverSampled.csv
+
