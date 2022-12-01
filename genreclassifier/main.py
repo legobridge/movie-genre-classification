@@ -1,6 +1,7 @@
 import json
 import tkinter as tk
 
+import numpy as np
 import pandas as pd
 import requests
 
@@ -26,7 +27,9 @@ def get_probabilities(processed_description: pd.Series):
         genre_encoding = json.load(f)
     probability_map = f'\nTop prediction: {get_top_genre(genre_encoding, response)}\n\n'
     for key, value in response.items():
-        probability_map += genre_encoding[key] + ':\t\t' + str(value * 100) + '%\n'
+        genre = genre_encoding[key]
+        probability = np.round(value * 100, 2)
+        probability_map += genre + ' : ' + str(probability) + '%\n'
     return probability_map
 
 
