@@ -1,8 +1,8 @@
-# using flask_restful
 from flask import Flask, jsonify
 from flask_restful import Resource, Api, request
 import tensorflow as tf
 import tensorflow_text as text
+
 physical_devices = tf.config.list_physical_devices('GPU')
 tf.config.experimental.set_memory_growth(physical_devices[0], enable=True)
 
@@ -12,6 +12,7 @@ app = Flask(__name__)
 api = Api(app)
 
 reloaded_model = tf.saved_model.load('../models/small_bert/bert_en_uncased_L-2_H-128_A-2')
+
 
 class SmallBert(Resource):
 
