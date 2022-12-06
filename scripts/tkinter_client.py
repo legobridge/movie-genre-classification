@@ -8,7 +8,6 @@ import requests
 from preprocessing import preprocess_descriptions
 
 
-# ssh -N -L 42069:batgirl.eecs.northwestern.edu:5000 kah3465@batgirl.eecs.northwestern.edu
 def get_top_genre(genre_encoding, response):
     top = '0'
     mx = response['0']
@@ -20,7 +19,7 @@ def get_top_genre(genre_encoding, response):
 
 
 def get_probabilities(processed_description: pd.Series):
-    url = 'http://127.0.0.1:42069/small_bert/get_probabilities'
+    url = 'http://127.0.0.1:5000/small_bert/get_probabilities'
     params = {'processed_description': processed_description[0]}
     response = requests.get(url, params).json()['probabilities']
     with open('../models/genre_encoding.json') as f:
